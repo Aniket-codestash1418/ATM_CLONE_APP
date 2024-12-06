@@ -25,6 +25,6 @@
     height: 100px;
     /*background-color: blueviolet;*/
     float: right;
-    /*justify-content:flex-end;*/
+    justify-content:flex-end;
 }
 

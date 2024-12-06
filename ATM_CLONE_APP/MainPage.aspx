@@ -36,7 +36,7 @@
     <div class="card" style="box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px; margin: 50px; opacity: 0.6;">
         <div class="card-body" style="padding: inherit">
             <!-- Image and text -->
-            <nav class="navbar">
+            <nav class="navbar" style="background-color: mintcream;">
                 <marquee>Welcome to new Bank's ATM!Hope you have a great Day!!</marquee>
 
             </nav>
@@ -48,8 +48,8 @@
                 <div class="card1" style="box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;">
 
                     <div class="box1">
-                        <asp:Button ID="btnMiniStatement" runat="server" Text="MiniStatement" CssClass=" btn btn-outline-warning" /><br />
-                        <asp:Button ID="btnPinGeneration" runat="server" Text="PIN GENERATION" CssClass=" btn btn-outline-warning" /><br />
+                        <asp:Button ID="btnMiniStatement" runat="server" Text="MiniStatement" CssClass=" btn btn-outline-warning" /><br /><br />
+                        <asp:Button ID="btnPinGeneration" runat="server" Text="PIN GENERATION" CssClass=" btn btn-outline-warning" /><br /><br />
                         <asp:Button ID="btnBalanceEnquiry" runat="server" Text="Check Balance" CssClass=" btn btn-outline-warning" />
 
                     </div>
@@ -59,8 +59,8 @@
                     </div>--%>
 
                     <div class="box2">
-                        <asp:Button ID="btnDeposit" runat="server" Text="DEPOSIT" CssClass=" btn btn-outline-warning" /><br />
-                        <asp:Button ID="btnWithDraw" runat="server" Text="WITHDRAW" CssClass=" btn btn-outline-warning" /><br />
+                        <asp:Button ID="btnDeposit" runat="server" Text="DEPOSIT" CssClass=" btn btn-outline-warning" /><br /><br />
+                        <asp:Button ID="btnWithDraw" runat="server" Text="WITHDRAW" CssClass=" btn btn-outline-warning" /><br /><br />
                         <asp:Button ID="btnTransfer" runat="server" Text="TRANSFER" CssClass=" btn btn-outline-warning" />
 
                     </div>

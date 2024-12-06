@@ -7,10 +7,12 @@
     height: 50vh;
     /* Aligns the children items in a row direction */
     display: flex;
-    column-gap:250px;
-    justify-content:space-between;
+    column-gap:240px;
+    justify-content:space-around;
     margin-left:250px;
-
+    padding-top:50px;
+    background-color:cadetblue;
+    border-radius:20px;
 }
 
 .box1 {
@@ -18,13 +20,12 @@
     height: 100px;
     /*background-color: #c4c4;*/
     float: left;
+   
 }
 
 .box2 {
     width: 100px;
     height: 100px;
-    /*background-color: blueviolet;*/
-    float: right;
-    justify-content:flex-end;
+   
 }
 

@@ -5,13 +5,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Main Page</title>
+    <link href="CSS/StyleSheet1.css" rel="stylesheet" />
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="DataTables/dataTables.dataTables.min.css" rel="stylesheet" />
     <link href="fontawesome/css/all.css" rel="stylesheet" />
     <script src="Scripts/bootstrap.min.js"></script>
     <style>
-        img {
-            height: 200px;
+        .img {
+            height: 1px;
+            width: 1px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -25,19 +27,7 @@
             backdrop-filter: blur(10px);
             margin: 100px;
             text-align: center;
-        }
 
-        .box1 {
-            float: left;
-            width: 48%;
-            border: 1px solid red;
-        }
-
-        .box2 {
-            float: right;
-            width: 48%;
-            border: 1px solid blue;
-            
         }
     </style>
 </head>
@@ -55,20 +45,27 @@
     <form id="form1" runat="server">
         <div>
             <div class="container">
-                <div class="card card-body">
+                <div class="card1" style="box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;">
+
                     <div class="box1">
-                        <asp:Button ID="btnMiniStatement" runat="server" Text="MiniStatement" CssClass=" btn btn-outline-warning" />
-                        <asp:Button ID="btnPinGeneration" runat="server" Text="PIN GENERATION" CssClass=" btn btn-outline-warning" />
+                        <asp:Button ID="btnMiniStatement" runat="server" Text="MiniStatement" CssClass=" btn btn-outline-warning" /><br />
+                        <asp:Button ID="btnPinGeneration" runat="server" Text="PIN GENERATION" CssClass=" btn btn-outline-warning" /><br />
                         <asp:Button ID="btnBalanceEnquiry" runat="server" Text="Check Balance" CssClass=" btn btn-outline-warning" />
 
                     </div>
+
+                    <%-- <div class="img">
+                        <img src="IMAGES/logoa.jpg" />
+                    </div>--%>
+
                     <div class="box2">
-                        <asp:Button ID="btnDeposit" runat="server" Text="DEPOSIT" CssClass=" btn btn-outline-warning" />
-                        <asp:Button ID="btnWithDraw" runat="server" Text="WITHDRAW" CssClass=" btn btn-outline-warning" />
+                        <asp:Button ID="btnDeposit" runat="server" Text="DEPOSIT" CssClass=" btn btn-outline-warning" /><br />
+                        <asp:Button ID="btnWithDraw" runat="server" Text="WITHDRAW" CssClass=" btn btn-outline-warning" /><br />
                         <asp:Button ID="btnTransfer" runat="server" Text="TRANSFER" CssClass=" btn btn-outline-warning" />
 
                     </div>
-                    <img src="IMAGES/logoa.jpg" />
+
+
                 </div>
             </div>
         </div>

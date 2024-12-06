@@ -11,7 +11,7 @@
     <script src="Scripts/bootstrap.min.js"></script>
     <style>
      .glass-effect {
-         background: rgba(255, 255, 255, 0.2);
+         
          border-radius: 10px;
          backdrop-filter: blur(10px);
          -webkit-backdrop-filter: blur(10px);
@@ -30,7 +30,7 @@
      <div class="card-body" style="padding: inherit">
          <!-- Image and text -->
          <nav class="navbar">
-             <a class="navbar" href="#">
+             <a class="navbar" href="Login.aspx">
                  <img src="IMAGES/logoa.jpg" width="40" height="40" class="d-inline-block align-top" alt="" />
                  BANK'S ATM
              </a>
@@ -60,7 +60,7 @@
                                 </div>
                                 <div class="form-group text-center">
                                     <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn btn-primary" OnClick="btnLogin_Click"/>
-                                    <asp:Button ID="btnRegister" runat="server" Text="Register" CssClass=" btn btn-outline-warning" />
+                                    <asp:Button ID="btnRegister" runat="server" CausesValidation="false" Text="Register" CssClass=" btn btn-outline-warning" />
                                 </div>
                             </div>
                         </div>

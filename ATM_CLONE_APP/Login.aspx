@@ -60,7 +60,7 @@
                                 </div>
                                 <div class="form-group text-center">
                                     <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn btn-primary" OnClick="btnLogin_Click"/>
-                                    <asp:Button ID="btnRegister" runat="server" CausesValidation="false" Text="Register" CssClass=" btn btn-outline-warning" />
+                                    <asp:Button ID="btnRegister" runat="server" CausesValidation="false" Text="Register" CssClass=" btn btn-outline-warning" OnClick="btnRegister_Click" />
                                 </div>
                             </div>
                         </div>

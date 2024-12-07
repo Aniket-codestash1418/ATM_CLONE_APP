@@ -46,5 +46,18 @@ namespace ATM_CLONE_APP
             txtUsername.Text = string.Empty;
             txtPassword.Text = string.Empty;
         }
+
+        protected void btnRegister_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Response.Redirect("RegisterUser.aspx");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }

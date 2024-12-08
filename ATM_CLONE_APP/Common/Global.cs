@@ -8,7 +8,7 @@ namespace ATM_CLONE_APP.Common
 {
     public class Global
     {
-        public bool CheckLogin(string accountnumber, string pin)
+        public int CheckLogin(string accountnumber, string pin)
         {
             try
             {
@@ -28,17 +28,22 @@ namespace ATM_CLONE_APP.Common
                             {
                                 if (sdr.Read())
                                 {
-                                    return true;
+                                    if (sdr["ACCOUNTNUMBER"].ToString() == "12345" && sdr["PIN"].ToString() == "1")
+                                    {
+                                        return 102;
+                                    }
+                                    else
+                                        return 105;
                                 }
                                 else
                                 {
-                                    return false;
+                                    return 400;
                                 }
                             }
                         }
                     }
                 }
-                return true;
+                return 0;
 
             }
             catch (Exception ex)
@@ -51,39 +56,40 @@ namespace ATM_CLONE_APP.Common
         public AccountInfoModel CreateUser(UserModel model)
         {
             AccountInfoModel accountInfoModel = new AccountInfoModel();
+            int response = 0;
             try
             {
                 using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbcon"].ConnectionString))
                 {
                     con.Open();
-                    string str = "INSERT INTO USERLOGIN(USERNAME,DATEOFBIRTH,AGE,USERADDRESS) VALUES(@Username,@Dob,@Age,@UserAddress)";
+                    //string str = "INSERT INTO USERLOGIN(USERNAME,DATEOFBIRTH,AGE,USERADDRESS) VALUES(@Username,@Dob,@Age,@UserAddress)";
+                    string str = @" INSERT INTO USERLOGIN (USERNAME, DATEOFBIRTH,AGE, USERADDRESS,EMAILS) OUTPUT INSERTED.USERID, INSERTED.USERNAME, INSERTED.DATEOFBIRTH, INSERTED.AGE, INSERTED.USERADDRESS,INSERTED.EMAILS VALUES (@Username, @DateOfBirth,@Age, @Address,@Emails)";
                     using (SqlCommand cmd = new SqlCommand(str, con))
                     {
                         cmd.CommandType = System.Data.CommandType.Text;
                         cmd.Parameters.AddWithValue("@Username", model.UserName);
-                        cmd.Parameters.AddWithValue("@Dob", model.DateOfBirth);
+                        cmd.Parameters.AddWithValue("@DateOfBirth", model.DateOfBirth);
                         cmd.Parameters.AddWithValue("@Age", model.Age);
-                        cmd.Parameters.AddWithValue("@UserAddress", model.Address);
-                        int response = cmd.ExecuteNonQuery();
-                        if (response != 0)
+                        cmd.Parameters.AddWithValue("@Address", model.Address);
+                        cmd.Parameters.AddWithValue("@Emails", model.Email);
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            SqlDataReader reader = cmd.ExecuteReader();
-                            if (reader != null)
+                            if (reader.HasRows)
                             {
                                 if (reader.Read())
                                 {
-                                    int userId = (int)reader["USERID"];
-                                    accountInfoModel = AddAcccoutInfo(Convert.ToInt32(model.Password), userId);
+                                    int userId = reader.GetInt32(0);
+                                    int userIds = (int)reader["USERID"];
+                                    accountInfoModel = AddAcccoutInfo(Convert.ToInt32(model.Password), userIds);
                                     return accountInfoModel;
-
                                 }
+                                //int userId = reader.GetInt64
+
+
                             }
-                            return accountInfoModel;
                         }
-                        else
-                        {
-                            return accountInfoModel;
-                        }
+                        return accountInfoModel;
                     }
                 }
 
@@ -105,7 +111,7 @@ namespace ATM_CLONE_APP.Common
                 using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbcon"].ConnectionString))
                 {
                     con.Open();
-                    string str = "INSERT INTO ACCOUNTINFO(ACCOUNTNUMBER,PIN,USERID) VALUES(@ACCNO,@PIN,@USERID)";
+                    string str = "INSERT INTO ACCOUNTINFO(ACCOUNTNUMBER,PIN,USERID) OUTPUT INSERTED.ACCOUNTID,INSERTED.ACCOUNTNUMBER,INSERTED.PIN,INSERTED.USERID VALUES(@ACCNO,@PIN,@USERID)";
                     using (SqlCommand cmd = new SqlCommand(str, con))
                     {
                         cmd.CommandType = System.Data.CommandType.Text;
@@ -113,31 +119,26 @@ namespace ATM_CLONE_APP.Common
                         cmd.Parameters.AddWithValue("@PIN", pin);
                         cmd.Parameters.AddWithValue("@USERID", userid);
 
-                        int response = cmd.ExecuteNonQuery();
-                        if (response != 0)
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            SqlDataReader reader = cmd.ExecuteReader();
-                            if (reader != null)
+                            if (reader.HasRows)
                             {
                                 if (reader.Read())
                                 {
-                                    infoModel.AccountNumber = (int)reader["ACCOUNTNUMBER"];
+                                    infoModel.AccountNumber = Convert.ToInt32(reader["ACCOUNTNUMBER"]);
                                     infoModel.StatusCode = 200;
                                     return infoModel;
                                 }
-                                else
-                                {
-                                    infoModel.AccountNumber = 0;
-                                    infoModel.StatusCode = 400;
-                                    return infoModel;
-                                }
+
                             }
-                        }
-                        else
-                        {
-                            infoModel.AccountNumber = 0;
-                            infoModel.StatusCode = 400;
-                            return infoModel;
+                            else
+                            {
+                                infoModel.AccountNumber = 0;
+                                infoModel.StatusCode = 400;
+                                return infoModel;
+                            }
+
                         }
                     }
                 }

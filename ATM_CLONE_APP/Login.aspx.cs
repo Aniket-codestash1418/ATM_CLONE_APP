@@ -20,12 +20,17 @@ namespace ATM_CLONE_APP
                     Response.Write("<script>alert('Please enter Username/Password')</script>");
                 }
 
-                bool checkLogin = obj.CheckLogin(txtUsername.Text, txtPassword.Text);
-                if (checkLogin)
+                int checkLogin = obj.CheckLogin(txtUsername.Text, txtPassword.Text);
+                if (checkLogin == 102)
                 {
                     //Session["AuthUserName"] = txtUsername.Text;
                     //Response.Redirect("MainPage.aspx");
                     Response.Write("<script>alert('Welcome Admin')</script>");
+                    Clear();
+                }
+                else if (checkLogin == 105)
+                {
+                    Response.Write("<script>alert('Welcome User')</script>");
                     Clear();
                 }
                 else

@@ -49,12 +49,12 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="username">Username</label>
+                                    <label for="username">AccountNumber</label>
                                     <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control" />
                                     <asp:RequiredFieldValidator ID="rfvUsername" runat="server" ControlToValidate="txtUsername" ErrorMessage="Username is required" CssClass="text-danger" Display="Dynamic" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="password">Password</label>
+                                    <label for="password">PIN</label>
                                     <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="form-control" MaxLength="25" />
                                     <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="txtPassword" ErrorMessage="Password is required" CssClass="text-danger" Display="Dynamic" />
                                 </div>

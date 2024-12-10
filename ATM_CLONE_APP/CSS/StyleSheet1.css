@@ -3,7 +3,7 @@
     padding: 0;
 }
 .card1 {
-    width: 90vh;
+    width: 100vh;
     height: 50vh;
     /* Aligns the children items in a row direction */
     display: flex;

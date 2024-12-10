@@ -2198,7 +2198,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\Global.cs" />
-    <Compile Include="DataTables\AccountInfoModel.cs" />
+    <Compile Include="Models\AccountInfoModel.cs" />
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2213,6 +2213,7 @@
     <Compile Include="MainPage.aspx.designer.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginResponseModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterUser.aspx.cs">

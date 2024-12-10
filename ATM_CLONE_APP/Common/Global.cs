@@ -8,8 +8,9 @@ namespace ATM_CLONE_APP.Common
 {
     public class Global
     {
-        public int CheckLogin(string accountnumber, string pin)
+        public LoginResponseModel CheckLogin(string accountnumber, string pin)
         {
+            LoginResponseModel responseModel = new LoginResponseModel();
             try
             {
                 using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbcon"].ConnectionString))
@@ -30,20 +31,28 @@ namespace ATM_CLONE_APP.Common
                                 {
                                     if (sdr["ACCOUNTNUMBER"].ToString() == "12345" && sdr["PIN"].ToString() == "1")
                                     {
-                                        return 102;
+
+                                        return responseModel;
                                     }
                                     else
-                                        return 105;
+                                    {
+                                        object userid = (int)sdr["USERID"];
+
+                                        responseModel.Username = FetchUser((int)userid);
+                                        responseModel.StatusCode = 205;
+                                        return responseModel;
+                                    }
+
                                 }
                                 else
                                 {
-                                    return 400;
+                                    return responseModel;
                                 }
                             }
                         }
                     }
                 }
-                return 0;
+                return responseModel;
 
             }
             catch (Exception ex)
@@ -52,6 +61,42 @@ namespace ATM_CLONE_APP.Common
                 throw new Exception(ex.Message);
             }
         }
+
+        private static string FetchUser(int userId)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbcon"].ConnectionString))
+                {
+                    con.Open();
+                    string str = "SELECT USERNAME FROM USERLOGIN WHERE USERID=@UserId";
+                    using (SqlCommand cmd = new SqlCommand(str, con))
+                    {
+                        cmd.CommandType = System.Data.CommandType.Text;
+                        cmd.Parameters.AddWithValue("@UserId", userId);
+                        using (SqlDataReader sdr = cmd.ExecuteReader())
+                        {
+                            if (sdr.HasRows)
+                            {
+                                if (sdr.Read())
+                                {
+                                    string Username = (string)sdr["USERNAME"];
+                                    return Username;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return null;
+        }
+
 
         public AccountInfoModel CreateUser(UserModel model)
         {
@@ -152,4 +197,5 @@ namespace ATM_CLONE_APP.Common
             return default;
         }
     }
+
 }

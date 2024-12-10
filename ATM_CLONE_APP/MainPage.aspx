@@ -29,6 +29,16 @@
             text-align: center;
 
         }
+        .hiddenField{
+             /*width: 100px;*/
+             height: 50px;
+             margin-right:auto;
+             /*background-color: #c4c4;*/
+        }
+        .Logout{
+            float:right;
+            
+        }
     </style>
 </head>
 
@@ -45,6 +55,12 @@
     <form id="form1" runat="server">
         <div>
             <div class="container">
+                <div class="hiddenField">
+                    <asp:Label ID="lblName" runat="server"></asp:Label>
+                    <div class="Logout">
+                        <asp:Button ID="btnLogout" CssClass="btn btn-outline-danger" runat="server" Text="Logout" />
+                    </div>
+                </div>
                 <div class="card1" style="box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;">
 
                     <div class="box1">

@@ -6,7 +6,7 @@ namespace ATM_CLONE_APP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //lblName.Text = "Hi " + Session["AuthUserName"].ToString();
         }
 
 

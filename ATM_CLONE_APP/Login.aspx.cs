@@ -36,6 +36,7 @@ namespace ATM_CLONE_APP
 
                     Session["AuthUserName"] = responseModel.Username;
                     Response.Redirect("MainPage.aspx", false);
+                    //Server.Transfer("MainPage.aspx", false);
                     Clear();
                     // Optionally, call CompleteRequest to bypass the rest of the ASP.NET pipeline
                     Context.ApplicationInstance.CompleteRequest();

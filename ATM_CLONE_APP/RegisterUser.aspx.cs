@@ -60,10 +60,10 @@ namespace ATM_CLONE_APP
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw new Exception(ex.Message);
             }
 
 

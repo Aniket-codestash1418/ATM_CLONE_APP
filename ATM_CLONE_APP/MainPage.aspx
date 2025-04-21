@@ -75,7 +75,7 @@
                     </div>--%>
 
                     <div class="box2">
-                        <asp:Button ID="btnDeposit" runat="server" Text="DEPOSIT" CssClass=" btn btn-outline-warning" /><br /><br />
+                        <asp:Button ID="btnDeposit" runat="server" Text="DEPOSIT" CssClass=" btn btn-outline-warning" OnClick="btnDeposit_Click" /><br /><br />
                         <asp:Button ID="btnWithDraw" runat="server" Text="WITHDRAW" CssClass=" btn btn-outline-warning" /><br /><br />
                         <asp:Button ID="btnTransfer" runat="server" Text="TRANSFER" CssClass=" btn btn-outline-warning" />
 

@@ -101,7 +101,7 @@ namespace ATM_CLONE_APP.Common
         public AccountInfoModel CreateUser(UserModel model)
         {
             AccountInfoModel accountInfoModel = new AccountInfoModel();
-            int response = 0;
+
             try
             {
                 using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbcon"].ConnectionString))
@@ -130,8 +130,6 @@ namespace ATM_CLONE_APP.Common
                                     return accountInfoModel;
                                 }
                                 //int userId = reader.GetInt64
-
-
                             }
                         }
                         return accountInfoModel;
@@ -175,7 +173,6 @@ namespace ATM_CLONE_APP.Common
                                     infoModel.StatusCode = 200;
                                     return infoModel;
                                 }
-
                             }
                             else
                             {
@@ -183,7 +180,6 @@ namespace ATM_CLONE_APP.Common
                                 infoModel.StatusCode = 400;
                                 return infoModel;
                             }
-
                         }
                     }
                 }
